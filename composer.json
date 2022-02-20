@@ -1,0 +1,46 @@
+{
+    "name": "c10d/craft-recaptcha",
+    "description": "Integrate reCAPTCHA v3 validation into your forms.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "craft-recaptcha",
+        "recaptcha"
+    ],
+    "support": {
+        "docs": "https://github.com/c10d-dev/craft-recaptcha/blob/master/README.md",
+        "issues": "https://github.com/c10d-dev/craft-recaptcha/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cédric Givord",
+            "homepage": "https://c10d.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.2 || ^8.0",
+        "craftcms/cms": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+          "c10d\\craftrecaptcha\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "reCAPTCHA v3 for Craft CMS",
+        "handle": "craft-recaptcha",
+        "developer": "Cédric Givord",
+        "developerUrl": "https://c10d.dev",
+        "documentationUrl": "https://github.com/c10d-dev/craft-recaptcha/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/c10d-dev/craft-recaptcha/master/CHANGELOG.md",
+        "components": {
+            "recaptcha": "c10d\\craftrecaptcha\\services\\RecaptchaService"
+        },
+        "class": "c10d\\craftrecaptcha\\CraftRecaptcha"
+    }
+}

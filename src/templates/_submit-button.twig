@@ -1,0 +1,15 @@
+{% if options.label is defined %}
+  <script>
+    function recaptchaBeforeSubmit(token) {
+      // submit form now that the recaptcha token has been retrieved
+      document.getElementById("{{ id }}-submit").closest("form").submit();
+    }
+  </script>
+  <button id="{{ id }}-submit"
+      class="g-recaptcha" 
+      {% for key, value in options if key != 'label' %}data-{{ key }}="{{ value }}" {% endfor %}
+      data-callback="recaptchaBeforeSubmit"
+      data-action="submit">{{ options.label }}</button>
+{% else %}
+  No label defined
+{% endif %}

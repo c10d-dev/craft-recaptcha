@@ -1,0 +1,27 @@
+{% if options.button is defined %}
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      // get form submit button
+      var btn = document.getElementById("{{ options.button }}");
+  
+      // add g-recaptcha class to submit button
+      btn.classList.add("g-recaptcha");
+  
+      // bind callback and action dataset
+      btn.dataset.callback="recaptchaBeforeSubmit";
+      btn.dataset.action="submit";
+  
+      // bind options to submit button
+      {% for key, value in options if key != 'button' %}
+      btn.dataset.{{ key }}="{{ value }}";
+      {% endfor %}
+    });
+
+    function recaptchaBeforeSubmit(token) {
+      // submit form now that the recaptcha token has been retrieved
+      document.getElementById("{{ options.button }}").closest("form").submit();
+    }
+  </script>
+{% else %}
+  No button defined
+{% endif %}

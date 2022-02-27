@@ -30,19 +30,22 @@ To install the plugin, follow these instructions.
 3. Add your `site key` and `secret key`, then save.
 4. Add the reCAPTCHA template tag and js to your forms.
 
+NOTE: you can change the difficulty threshold directly in the settings! (default is 0.5)
+
 
 ## Using craft-recaptcha
 
 In your template, just add the following twig snippet to render a submit button for your form binded with reCAPTCHA:
 
 ```twig
-{{ craft.recaptcha.renderSubmitButton() }}
+{{ craft.recaptcha.renderSubmitButton('Send Request') }}
 ```
 
 Or you can bind reCAPTCHA directly to your own submit button:
 
 ```twig
 {{ craft.recaptcha.renderBindButton('my-submit-button-html-id') }}
+<button id="my-submit-button-html-id" type="submit">Send<button>
 ```
 
 You can even create the block yourself and only get the site key variable:
@@ -51,6 +54,8 @@ You can even create the block yourself and only get the site key variable:
 <button class="g-recaptcha" data-sitekey="{{ craft.recaptcha.sitekey() }}"></button>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 ```
+
+NOTE: If you’re using the CraftCMS [Contact Form](https://plugins.craftcms.com/contact-form) plugin or you're using craft-recaptcha to validate a public user registration, just activate the corresponding toggle in the plugin's settings, you're all set!
 
 
 ## Verify the reCAPTCHA
@@ -68,9 +73,6 @@ if (!$isValid) {
     // ERROR: you can push an error here
 }
 ```
-
-In case of using craft-recaptcha to validate a public user registration, just activate the toggle in
-the plugin's settings.
 
 
 ---

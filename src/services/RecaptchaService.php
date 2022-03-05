@@ -11,6 +11,7 @@
 namespace c10d\craftrecaptcha\services;
 
 use c10d\craftrecaptcha\CraftRecaptcha;
+use c10d\craftrecaptcha\records\RecaptchaLogs;
 
 use Craft;
 use craft\base\Component;
@@ -59,13 +60,13 @@ class RecaptchaService extends Component
 
     public function renderBindButton(string $button = 'submit-button', string $id = 'recaptcha-1', array $options = [])
     {
-	$options['button'] = $button;
+        $options['button'] = $button;
         return $this->render($id, $options, 'craft-recaptcha/_bind-button');
     }
 
     public function renderSubmitButton(string $label = 'Submit', string $id = 'recaptcha-1', array $options = [])
     {
-	$options['label'] = $label;
+        $options['label'] = $label;
         return $this->render($id, $options, 'craft-recaptcha/_submit-button');
     }
 
@@ -76,7 +77,12 @@ class RecaptchaService extends Component
             'secret' =>  $settings->getSecretKey(),
             'response' => $data
         );
-	//Craft::dd($params);
+        $log = new RecaptchaLogs();
+        $log->siteId = Craft::$app->sites->getCurrentSite()->id;
+        if (Craft::$app->config->general->devMode) {
+            $log->requestUrl = Craft::$app->request->getUrl();
+            $log->requestBody = Craft::$app->request->getRawBody();
+        }
 
         $curlRequest = curl_init();
         curl_setopt($curlRequest, CURLOPT_URL, $this->url);
@@ -85,14 +91,18 @@ class RecaptchaService extends Component
         curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($curlRequest);
         if (!curl_errno($curlRequest) && curl_getinfo($curlRequest, CURLINFO_HTTP_CODE) == 200) {
-	    $json = json_decode($response);
-	    if ($json->success && $json->hostname == Craft::$app->request->hostName && $json->score >= $settings->threshold) {
-		curl_close($curlRequest);
-		return true;
-	    }
+            $json = json_decode($response);
+            if ($json->success && $json->hostname == Craft::$app->request->hostName && $json->score >= $settings->threshold) {
+                curl_close($curlRequest);
+                $log->success = true;
+                $log->save(false);
+                return true;
+            }
         }
 
         curl_close($curlRequest);
+        $log->success = false;
+        $log->save(false);
         return false;
     }
 }

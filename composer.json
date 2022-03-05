@@ -2,7 +2,7 @@
     "name": "c10d/craft-recaptcha",
     "description": "Integrate reCAPTCHA v3 validation into your forms.",
     "type": "craft-plugin",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "keywords": [
         "craft",
         "cms",

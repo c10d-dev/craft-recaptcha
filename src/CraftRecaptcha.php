@@ -13,14 +13,17 @@ namespace c10d\craftrecaptcha;
 use c10d\craftrecaptcha\services\RecaptchaService;
 use c10d\craftrecaptcha\variables\RecaptchaVariable;
 use c10d\craftrecaptcha\models\SettingsModel;
+use c10d\craftrecaptcha\utilities\RecaptchaUtility;
 
 use Craft;
 use craft\base\Plugin;
 use craft\contactform\models\Submission;
 use craft\elements\User;
 use craft\events\PluginEvent;
+use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterUrlRulesEvent;
 use craft\services\Plugins;
+use craft\services\Utilities;
 use craft\web\UrlManager;
 use craft\web\twig\variables\CraftVariable;
 
@@ -101,6 +104,15 @@ class CraftRecaptcha extends Plugin
     {
         parent::init();
         self::$plugin = $this;
+
+        // Register our utilities
+        Event::on(
+            Utilities::class,
+            Utilities::EVENT_REGISTER_UTILITY_TYPES,
+            function (RegisterComponentTypesEvent $event) {
+                $event->types[] = RecaptchaUtility::class;
+            }
+        );
 
         // Register our variables
         Event::on(

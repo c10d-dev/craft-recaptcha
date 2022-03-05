@@ -41,4 +41,11 @@ return [
 
     'Please verify you are human.' => 'Veuillez valider que vous êtes un humain.',
 
+    'Total count' => 'Nombre total ',
+    'Success rate' => 'Taux de succès ',
+    'Error rate' => 'Taux d\'erreur ',
+
+    'Logs' => 'Journaux',
+    'success' => 'succès',
+    'failure' => 'échec',
 ];

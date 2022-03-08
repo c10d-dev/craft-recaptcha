@@ -86,6 +86,7 @@ class Install extends Migration
                     'success' => $this->boolean()->notNull()->defaultValue(false),
                     'requestUrl' => $this->mediumText(),
                     'requestBody' => $this->longText(),
+                    'captchaJson' => $this->mediumText(),
                 ]
             );
         }

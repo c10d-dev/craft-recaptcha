@@ -79,10 +79,6 @@ class RecaptchaService extends Component
         );
         $log = new RecaptchaLogs();
         $log->siteId = Craft::$app->sites->getCurrentSite()->id;
-        if (Craft::$app->config->general->devMode) {
-            $log->requestUrl = Craft::$app->request->getUrl();
-            $log->requestBody = Craft::$app->request->getRawBody();
-        }
 
         $curlRequest = curl_init();
         curl_setopt($curlRequest, CURLOPT_URL, $this->url);
@@ -90,6 +86,13 @@ class RecaptchaService extends Component
         curl_setopt($curlRequest, CURLOPT_POSTFIELDS, http_build_query($params));
         curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($curlRequest);
+
+        if (Craft::$app->config->general->devMode) {
+            $log->requestUrl = Craft::$app->request->getUrl();
+            $log->requestBody = Craft::$app->request->getRawBody();
+            $log->captchaJson = $response;
+        }
+
         if (!curl_errno($curlRequest) && curl_getinfo($curlRequest, CURLINFO_HTTP_CODE) == 200) {
             $json = json_decode($response);
             if ($json->success && $json->hostname == Craft::$app->request->hostName && $json->score >= $settings->threshold) {

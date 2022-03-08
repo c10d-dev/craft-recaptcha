@@ -47,6 +47,8 @@
       <div id="log-{{ log.id }}" class="hidden" style="padding: 20px;">
         <h4>REQUEST RAW BODY</h4>
         <p>{{ log.requestBody }}</p>
+        <h4>RECAPTCHA RESPONSE</h4>
+        <p>{{ log.captchaJson }}</p>
       </div>
     </div>
   {% endfor %}

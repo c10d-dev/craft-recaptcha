@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0 - 2022-05-31
+### Changed
+- Now requires PHP ^8.0.2.
+- Now requires Craft ^4.0.0.
+
 ## 1.2.0 - 2022-03-08
 ### Added
 - Added missing recaptcha response in devmode logs

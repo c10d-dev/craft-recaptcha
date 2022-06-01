@@ -91,7 +91,7 @@ class SettingsModel extends Model
         return Craft::parseEnv($this->secretKey);
     }
 
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'parser' => [
@@ -111,7 +111,7 @@ class SettingsModel extends Model
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['siteKey', 'string'],

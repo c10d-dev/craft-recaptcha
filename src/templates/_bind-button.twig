@@ -12,8 +12,10 @@
       btn.dataset.action="submit";
   
       // bind options to submit button
-      {% for key, value in options if key != 'button' %}
-      btn.dataset.{{ key }}="{{ value }}";
+      {% for key, value in options %}
+        {% if key != 'button' %}
+          btn.dataset.{{ key }}="{{ value }}";
+        {% endif %}
       {% endfor %}
     });
 

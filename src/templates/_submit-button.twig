@@ -7,7 +7,7 @@
   </script>
   <button id="{{ id }}-submit"
       class="g-recaptcha" 
-      {% for key, value in options if key != 'label' %}data-{{ key }}="{{ value }}" {% endfor %}
+      {% for key, value in options %}{% if key != 'label' %}data-{{ key }}="{{ value }}" {% endif %}{% endfor %}
       data-callback="recaptchaBeforeSubmit"
       data-action="submit">{{ options.label }}</button>
 {% else %}

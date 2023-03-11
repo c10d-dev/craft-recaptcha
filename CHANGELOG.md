@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.2 - 2023-03-10
+### Fixed
+- Fix error installing plugin with PostgreSQL
+
 ## 2.0.1 - 2022-07-14
 ### Fixed
 - Fixed template error by removing if condition inside for loop

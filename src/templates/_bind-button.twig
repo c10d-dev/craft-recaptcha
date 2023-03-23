@@ -21,7 +21,15 @@
 
     function recaptchaBeforeSubmit(token) {
       // submit form now that the recaptcha token has been retrieved
-      document.getElementById("{{ options.button }}").closest("form").submit();
+      let b = document.getElementById("{{ options.button }}");
+      let f = b.closest("form");
+      if (f.requestSubmit) {
+        // form will be submitted only if validation succeeds
+        f.requestSubmit(b);
+      } else {
+        // constraint validation is not triggered
+        f.submit();
+      }
     }
   </script>
 {% else %}

@@ -55,7 +55,7 @@ You can even create the block yourself and only get the site key variable:
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 ```
 
-NOTE: If you’re using the CraftCMS [Contact Form](https://plugins.craftcms.com/contact-form) plugin or you're using craft-recaptcha to validate a public user registration, just activate the corresponding toggle in the plugin's settings, you're all set!
+NOTE: After this step is done, if you’re using the CraftCMS [Contact Form](https://plugins.craftcms.com/contact-form) plugin or you're using craft-recaptcha to validate a public user registration, just activate the corresponding toggle in the plugin's settings, you're all set! (the recaptcha will be automatically verified on submission)
 
 
 ## Verify the reCAPTCHA

@@ -16,6 +16,7 @@ use c10d\craftrecaptcha\records\RecaptchaLogs;
 use Craft;
 use craft\base\Component;
 use craft\web\View;
+use craft\helpers\App;
 use craft\helpers\Template;
 
 
@@ -72,6 +73,10 @@ class RecaptchaService extends Component
 
     public function verify($data)
     {
+	if (App::env('CRAFT_RECAPTCHA_SKIP_VERIFICATION') ?? false) {
+            return true;
+	}
+
         $settings = CraftRecaptcha::$plugin->getSettings();
         $params = array(
             'secret' =>  $settings->getSecretKey(),

@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-recaptcha plugin for Craft CMS 3.x
+ * craft-recaptcha plugin for Craft CMS
  *
  * Integrate reCAPTCHA validation into your forms.
  *
@@ -41,35 +41,35 @@ class SettingsModel extends Model
      *
      * @var string
      */
-    public $siteKey = '';
+    public string $siteKey = '';
 
     /**
      * Secret key model attribute
      *
      * @var string
      */
-    public $secretKey = '';
+    public string $secretKey = '';
 
     /**
      * Threshold model attribute
      *
      * @var float
      */
-    public $threshold = 0.5;
+    public float $threshold = 0.5;
 
     /**
      * Validate ContactForm
      *
      * @var bool
      */
-    public $validateContactForm = false;
+    public bool $validateContactForm = false;
 
     /**
      * Validate UsersRegistration
      *
      * @var bool
      */
-    public $validateUsersRegistration = false;
+    public bool $validateUsersRegistration = false;
 
 
     // Public Methods

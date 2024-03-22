@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-recaptcha plugin for Craft CMS 3.x
+ * craft-recaptcha plugin for Craft CMS
  *
  * Integrate reCAPTCHA validation into your forms.
  *
@@ -28,7 +28,7 @@ class RecaptchaLogs extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%craftrecaptcha_logs}}';
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-recaptcha plugin for Craft CMS 3.x
+ * craft-recaptcha plugin for Craft CMS
  *
  * Integrate reCAPTCHA validation into your forms.
  *

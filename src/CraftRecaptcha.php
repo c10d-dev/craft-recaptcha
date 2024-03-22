@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-recaptcha plugin for Craft CMS 3.x
+ * craft-recaptcha plugin for Craft CMS
  *
  * Integrate reCAPTCHA validation into your forms.
  *
@@ -16,6 +16,7 @@ use c10d\craftrecaptcha\models\SettingsModel;
 use c10d\craftrecaptcha\utilities\RecaptchaUtility;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\contactform\models\Submission;
 use craft\elements\User;
@@ -60,7 +61,7 @@ class CraftRecaptcha extends Plugin
      *
      * @var CraftRecaptcha
      */
-    public static $plugin;
+    public static CraftRecaptcha $plugin;
 
     // Public Properties
     // =========================================================================
@@ -100,7 +101,7 @@ class CraftRecaptcha extends Plugin
      * you do not need to load it in your init() method.
      *
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
@@ -193,9 +194,9 @@ class CraftRecaptcha extends Plugin
     /**
      * Creates and returns the model used to store the plugin’s settings.
      *
-     * @return \craft\base\Model|null
+     * @return Model|null
      */
-    protected function createSettingsModel(): ?\craft\base\Model
+    protected function createSettingsModel(): ?Model
     {
         return new SettingsModel();
     }

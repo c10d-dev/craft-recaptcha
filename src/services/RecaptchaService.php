@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-recaptcha plugin for Craft CMS 3.x
+ * craft-recaptcha plugin for Craft CMS
  *
  * Integrate reCAPTCHA validation into your forms.
  *
@@ -18,6 +18,7 @@ use craft\base\Component;
 use craft\web\View;
 use craft\helpers\App;
 use craft\helpers\Template;
+use Twig\Markup;
 
 
 /**
@@ -35,12 +36,12 @@ use craft\helpers\Template;
  */
 class RecaptchaService extends Component
 {
-    protected $url = 'https://www.google.com/recaptcha/api/siteverify';
+    protected string $url = 'https://www.google.com/recaptcha/api/siteverify';
 
     // Public Methods
     // =========================================================================
 
-    public function render(string $id = 'recaptcha-1', array $options = [], string $template = 'craft-recaptcha/_recaptcha')
+    public function render(string $id = 'recaptcha-1', array $options = [], string $template = 'craft-recaptcha/_recaptcha'): Markup
     {
         $settings = CraftRecaptcha::$plugin->getSettings();
 
@@ -59,19 +60,19 @@ class RecaptchaService extends Component
         );
     }
 
-    public function renderBindButton(string $button = 'submit-button', string $id = 'recaptcha-1', array $options = [])
+    public function renderBindButton(string $button = 'submit-button', string $id = 'recaptcha-1', array $options = []): Markup
     {
         $options['button'] = $button;
         return $this->render($id, $options, 'craft-recaptcha/_bind-button');
     }
 
-    public function renderSubmitButton(string $label = 'Submit', string $id = 'recaptcha-1', array $options = [])
+    public function renderSubmitButton(string $label = 'Submit', string $id = 'recaptcha-1', array $options = []): Markup
     {
         $options['label'] = $label;
         return $this->render($id, $options, 'craft-recaptcha/_submit-button');
     }
 
-    public function verify($data)
+    public function verify($data): bool
     {
 	if (App::env('CRAFT_RECAPTCHA_SKIP_VERIFICATION') ?? false) {
             return true;

@@ -1,4 +1,4 @@
-# reCAPTCHA v3 plugin for Craft CMS 3.x
+# reCAPTCHA v3 plugin for Craft CMS
 
 Integrate reCAPTCHA validation into your forms.
 

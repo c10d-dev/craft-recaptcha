@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-recaptcha plugin for Craft CMS 3.x
+ * craft-recaptcha plugin for Craft CMS
  *
  * Integrate reCAPTCHA validation into your forms.
  *
@@ -13,6 +13,7 @@ namespace c10d\craftrecaptcha\variables;
 use c10d\craftrecaptcha\CraftRecaptcha;
 
 use Craft;
+use Twig\Markup;
 
 
 /**
@@ -40,9 +41,9 @@ class RecaptchaVariable
      * @param string $button
      * @param string $id
      * @param array $options
-     * @return string
+     * @return Markup
      */
-    public function renderBindButton(string $button, string $id = 'recaptcha-1', array $options = [])
+    public function renderBindButton(string $button, string $id = 'recaptcha-1', array $options = []): Markup
     {
         return CraftRecaptcha::$plugin->recaptcha->renderBindButton($button, $id, $options);
     }
@@ -55,9 +56,9 @@ class RecaptchaVariable
      * @param string $label
      * @param string $id
      * @param array $options
-     * @return string
+     * @return Markup
      */
-    public function renderSubmitButton(string $label = 'Submit', string $id = 'recaptcha-1', array $options = [])
+    public function renderSubmitButton(string $label = 'Submit', string $id = 'recaptcha-1', array $options = []): Markup
     {
         return CraftRecaptcha::$plugin->recaptcha->renderSubmitButton($label, $id, $options);
     }
@@ -69,7 +70,7 @@ class RecaptchaVariable
      *
      * @return string
      */
-    public function sitekey()
+    public function sitekey(): ?string
     {
         $settings = CraftRecaptcha::$plugin->getSettings();
         return $settings->getSiteKey();

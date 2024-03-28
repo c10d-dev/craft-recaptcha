@@ -47,7 +47,7 @@ class RecaptchaUtility extends Utility
     /**
      * @inheritdoc
      */
-    public static function iconPath(): ?string
+    public static function icon(): ?string
     {
         return Craft::getAlias("@c10d/craftrecaptcha/icon.svg");
     }

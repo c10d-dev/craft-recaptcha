@@ -149,7 +149,7 @@ class CraftRecaptcha extends Plugin
                 $user = $event->sender;
 
                 // Only validate captcha on new users
-                if ($user->id === null && $user->uid === null && $user->contentId === null) {
+                if ($user->id === null && $user->uid === null) {
                     $captcha = Craft::$app->getRequest()->getParam('g-recaptcha-response');
                     $isValid = CraftRecaptcha::$plugin->recaptcha->verify($captcha);
                     if (!$isValid) {

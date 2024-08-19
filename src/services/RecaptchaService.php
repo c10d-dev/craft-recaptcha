@@ -43,6 +43,7 @@ class RecaptchaService extends Component
 
     public function render(string $id = 'recaptcha-1', array $options = [], string $template = 'craft-recaptcha/_recaptcha'): Markup
     {
+        $options['scope'] = mt_rand();
         $settings = CraftRecaptcha::$plugin->getSettings();
 
         // push recaptcha js file at the end of the html

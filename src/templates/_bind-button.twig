@@ -8,7 +8,7 @@
       btn.classList.add("g-recaptcha");
   
       // bind callback and action dataset
-      btn.dataset.callback="recaptchaBeforeSubmit";
+      btn.dataset.callback="recaptchaBeforeSubmit{{- options.scope -}}";
       btn.dataset.action="submit";
   
       // bind options to submit button
@@ -19,7 +19,7 @@
       {% endfor %}
     });
 
-    function recaptchaBeforeSubmit(token) {
+    function recaptchaBeforeSubmit{{- options.scope -}}(token) {
       // submit form now that the recaptcha token has been retrieved
       let b = document.getElementById("{{ options.button }}");
       let f = b.closest("form");

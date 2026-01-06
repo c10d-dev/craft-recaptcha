@@ -74,9 +74,9 @@ class RecaptchaService extends Component
 
     public function verify($data): bool
     {
-	if (App::env('CRAFT_RECAPTCHA_SKIP_VERIFICATION') ?? false) {
-            return true;
-	}
+		if (App::env('CRAFT_RECAPTCHA_SKIP_VERIFICATION') ?? false) {
+				return true;
+		}
 
         $settings = CraftRecaptcha::$plugin->getSettings();
         $params = array(
